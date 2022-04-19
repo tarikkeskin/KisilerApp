@@ -5,12 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,7 +22,7 @@ import com.example.kisilerapplication.databinding.FragmentAnasayfaBinding;
 import com.example.kisilerapplication.entity.Kisiler;
 
 
-public class AnasayfaFragment extends Fragment {
+public class AnasayfaFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     private FragmentAnasayfaBinding tasarim;
 
@@ -63,6 +66,44 @@ public class AnasayfaFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.toolbar_menu,menu);
+        /**
+         * item connection
+         */
+        MenuItem item = menu.findItem(R.id.action_ara);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(this);
+
+
         super.onCreateOptionsMenu(menu, inflater);
     }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        ara(query); // when icaon selected pressed
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        ara(newText); // harf girdikce
+        return true;
+    }
+
+    public void ara(String aramaKelimesi){
+        Log.e("Kişi Ara",aramaKelimesi);
+    }
+    /*
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_ara:
+                Log.e("Kişi Ara Icon","Secildi");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    */
+
+
 }
