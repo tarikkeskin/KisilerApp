@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,8 +19,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kisilerapplication.R;
+import com.example.kisilerapplication.adapter.KisilerAdapter;
 import com.example.kisilerapplication.databinding.FragmentAnasayfaBinding;
 import com.example.kisilerapplication.entity.Kisiler;
+
+import java.util.ArrayList;
 
 
 public class AnasayfaFragment extends Fragment implements SearchView.OnQueryTextListener{
@@ -40,19 +44,26 @@ public class AnasayfaFragment extends Fragment implements SearchView.OnQueryText
          */
         ((AppCompatActivity) getActivity()).setSupportActionBar(tasarim.toolbarAnasayfa);
 
+        /**
+         * Adapter recycler view
+         */
+        tasarim.rv.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        ArrayList<Kisiler> kisilerList = new ArrayList<>();
+        Kisiler k1 = new Kisiler(1,"Veli","123456");
+        Kisiler k2 = new Kisiler(2,"elif","1663426");
+        Kisiler k3 = new Kisiler(3,"ahmet","1123126");
+        kisilerList.add(k1);
+        kisilerList.add(k2);
+        kisilerList.add(k3);
+
+        KisilerAdapter adapter = new KisilerAdapter(requireContext(),kisilerList);
+        tasarim.rv.setAdapter(adapter);
 
         tasarim.fab.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.kisiKayitGecis);
         });
 
-        tasarim.buttonDetay.setOnClickListener(view -> {
-
-            Kisiler kisi = new Kisiler(1,"ahmet","sfdsdf");
-            //Using Direction when sending data
-            AnasayfaFragmentDirections.KisiDetayGecis gecis = AnasayfaFragmentDirections.kisiDetayGecis(kisi);
-            Navigation.findNavController(view).navigate(gecis);
-
-        });
 
         return tasarim.getRoot();
     }
