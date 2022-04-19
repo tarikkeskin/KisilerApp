@@ -2,10 +2,15 @@ package com.example.kisilerapplication.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,6 +32,12 @@ public class AnasayfaFragment extends Fragment {
 
         tasarim.toolbarAnasayfa.setTitle("Kişiler");
 
+        /**
+         * Adding menu toolbar
+         */
+        ((AppCompatActivity) getActivity()).setSupportActionBar(tasarim.toolbarAnasayfa);
+
+
         tasarim.fab.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.kisiKayitGecis);
         });
@@ -41,5 +52,17 @@ public class AnasayfaFragment extends Fragment {
         });
 
         return tasarim.getRoot();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }
