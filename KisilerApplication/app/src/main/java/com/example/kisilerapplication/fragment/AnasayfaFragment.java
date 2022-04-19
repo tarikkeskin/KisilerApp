@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.kisilerapplication.R;
 import com.example.kisilerapplication.databinding.FragmentAnasayfaBinding;
+import com.example.kisilerapplication.entity.Kisiler;
 
 
 public class AnasayfaFragment extends Fragment {
@@ -28,6 +29,14 @@ public class AnasayfaFragment extends Fragment {
 
         tasarim.fab.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.kisiKayitGecis);
+        });
+
+        tasarim.buttonDetay.setOnClickListener(view -> {
+
+            Kisiler kisi = new Kisiler(1,"ahmet","sfdsdf");
+            //Using Direction when sending data
+            AnasayfaFragmentDirections.KisiDetayGecis gecis = AnasayfaFragmentDirections.kisiDetayGecis(kisi);
+            Navigation.findNavController(view).navigate(gecis);
 
         });
 
