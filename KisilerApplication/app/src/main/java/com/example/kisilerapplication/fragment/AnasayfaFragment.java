@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -24,6 +25,7 @@ import com.example.kisilerapplication.R;
 import com.example.kisilerapplication.adapter.KisilerAdapter;
 import com.example.kisilerapplication.databinding.FragmentAnasayfaBinding;
 import com.example.kisilerapplication.entity.Kisiler;
+import com.example.kisilerapplication.viewmodel.AnasayfaFragmentViewModel;
 
 import java.util.ArrayList;
 
@@ -31,6 +33,7 @@ import java.util.ArrayList;
 public class AnasayfaFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     private FragmentAnasayfaBinding tasarim;
+    private AnasayfaFragmentViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,6 +76,7 @@ public class AnasayfaFragment extends Fragment implements SearchView.OnQueryText
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        viewModel = new ViewModelProvider(this).get(AnasayfaFragmentViewModel.class);
     }
 
 
@@ -92,20 +96,17 @@ public class AnasayfaFragment extends Fragment implements SearchView.OnQueryText
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        ara(query); // when icaon selected pressed
+        viewModel.ara(query); // when icaon selected pressed
         return true;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        ara(newText); // harf girdikce
+        viewModel.ara(newText); // harf girdikce
         return true;
     }
 
-    public void ara(String aramaKelimesi){
 
-        Log.e("Kişi Ara",aramaKelimesi);
-    }
     /*
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
