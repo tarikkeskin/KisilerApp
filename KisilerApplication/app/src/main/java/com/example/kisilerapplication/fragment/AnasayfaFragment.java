@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,20 +36,16 @@ public class AnasayfaFragment extends Fragment implements SearchView.OnQueryText
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        tasarim = FragmentAnasayfaBinding.inflate(inflater, container, false);
-
-        tasarim.toolbarAnasayfa.setTitle("Kişiler");
+        // DataBinding
+        tasarim = DataBindingUtil.inflate(inflater, R.layout.fragment_anasayfa,container, false);
+        tasarim.setAnasayfaFragment(this);
+        tasarim.setAnasayfaToolbarBaslik("Kişiler");
 
         /**
          * Adding menu toolbar
          */
         ((AppCompatActivity) getActivity()).setSupportActionBar(tasarim.toolbarAnasayfa);
 
-        /**
-         * Adapter recycler view
-         */
-        tasarim.rv.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         //Grid recycler view vertical&horizontal
         //tasarim.rv.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
@@ -62,14 +59,14 @@ public class AnasayfaFragment extends Fragment implements SearchView.OnQueryText
         kisilerList.add(k3);
 
         KisilerAdapter adapter = new KisilerAdapter(requireContext(),kisilerList);
-        tasarim.rv.setAdapter(adapter);
-
-        tasarim.fab.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigate(R.id.kisiKayitGecis);
-        });
+        tasarim.setKisilerAdapter(adapter);
 
 
         return tasarim.getRoot();
+    }
+
+    public void fabTikla(View view){
+        Navigation.findNavController(view).navigate(R.id.kisiKayitGecis);
     }
 
     @Override
@@ -77,6 +74,7 @@ public class AnasayfaFragment extends Fragment implements SearchView.OnQueryText
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -105,6 +103,7 @@ public class AnasayfaFragment extends Fragment implements SearchView.OnQueryText
     }
 
     public void ara(String aramaKelimesi){
+
         Log.e("Kişi Ara",aramaKelimesi);
     }
     /*

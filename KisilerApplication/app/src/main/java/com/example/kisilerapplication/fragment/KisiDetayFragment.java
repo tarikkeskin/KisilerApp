@@ -2,6 +2,7 @@ package com.example.kisilerapplication.fragment;
 
 import android.os.Bundle;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -23,27 +24,21 @@ public class KisiDetayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        tasarim = FragmentKisiDetayBinding.inflate(inflater, container, false);
-        tasarim.toolbarKisiDetay.setTitle("Kişi Detay");
+        // Data binding
+        tasarim = DataBindingUtil.inflate(inflater, R.layout.fragment_kisi_detay,container, false);
+        tasarim.setKisiDetayFragment(this);
+
+        tasarim.setKisiDetayToolbarBaslik("Kişi Detay");
+
 
         KisiDetayFragmentArgs bundle = KisiDetayFragmentArgs.fromBundle(getArguments());
         Kisiler gelenKisi = bundle.getKisi();
-
-        tasarim.editTextKisiAd.setText(gelenKisi.getKisi_ad());
-        tasarim.editTextKisiTel.setText(gelenKisi.getKisi_tel());
-
-        tasarim.buttonGuncelle.setOnClickListener(view -> {
-            String kisi_ad = tasarim.editTextKisiAd.getText().toString();
-            String kisi_tel = tasarim.editTextKisiTel.getText().toString();
-            guncelle(gelenKisi.getKisi_id(),kisi_ad,kisi_tel);
-
-        });
-
+        tasarim.setKisiNesnesi(gelenKisi);
 
         return tasarim.getRoot();
     }
 
-    public void guncelle(int kisi_id,String kisi_adi,String kisi_tel){
+    public void buttonGuncelle(int kisi_id,String kisi_adi,String kisi_tel){
         Log.e("Kişi Güncelle",kisi_id + kisi_adi + kisi_tel);
     }
 
