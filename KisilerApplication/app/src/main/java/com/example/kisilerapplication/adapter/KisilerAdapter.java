@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.kisilerapplication.R;
 import com.example.kisilerapplication.databinding.CardTasarimBinding;
 import com.example.kisilerapplication.entity.Kisiler;
 import com.example.kisilerapplication.fragment.AnasayfaFragmentDirections;
@@ -39,10 +41,10 @@ public class KisilerAdapter extends RecyclerView.Adapter<KisilerAdapter.CardTasa
     @Override
     public CardTasarimTutucu onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         /**
-         * view binding
+         * Card tasarim Data binding
          */
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        CardTasarimBinding tasarim = CardTasarimBinding.inflate(layoutInflater,parent,false);
+        CardTasarimBinding tasarim = DataBindingUtil.inflate(layoutInflater, R.layout.card_tasarim, parent,false);
         return new CardTasarimTutucu(tasarim);
     }
 
@@ -51,7 +53,9 @@ public class KisilerAdapter extends RecyclerView.Adapter<KisilerAdapter.CardTasa
         Kisiler kisi = kisilerListesi.get(position);
         CardTasarimBinding t = holder.tasarim;
 
-        t.textViewKisiBilgi.setText(kisi.getKisi_ad()+" - "+kisi.getKisi_tel());
+        t.setKisiNesnesi(kisi);
+
+        //Data binding dont support card event handler
 
         /**
          *click componenets
