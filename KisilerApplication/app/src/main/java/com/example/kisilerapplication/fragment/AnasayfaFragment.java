@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,6 +49,9 @@ public class AnasayfaFragment extends Fragment implements SearchView.OnQueryText
          * Adapter recycler view
          */
         tasarim.rv.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        //Grid recycler view vertical&horizontal
+        //tasarim.rv.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
 
         ArrayList<Kisiler> kisilerList = new ArrayList<>();
         Kisiler k1 = new Kisiler(1,"Veli","123456");

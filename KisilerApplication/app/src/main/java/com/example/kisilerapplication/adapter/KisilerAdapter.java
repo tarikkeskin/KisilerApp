@@ -1,15 +1,19 @@
 package com.example.kisilerapplication.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kisilerapplication.databinding.CardTasarimBinding;
 import com.example.kisilerapplication.entity.Kisiler;
+import com.example.kisilerapplication.fragment.AnasayfaFragmentDirections;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -48,6 +52,24 @@ public class KisilerAdapter extends RecyclerView.Adapter<KisilerAdapter.CardTasa
         CardTasarimBinding t = holder.tasarim;
 
         t.textViewKisiBilgi.setText(kisi.getKisi_ad()+" - "+kisi.getKisi_tel());
+
+        /**
+         *click componenets
+         * data transfer
+         */
+        t.satirCard.setOnClickListener(view -> {
+            AnasayfaFragmentDirections.KisiDetayGecis gecis = AnasayfaFragmentDirections.kisiDetayGecis(kisi);
+            Navigation.findNavController(view).navigate(gecis);
+
+        });
+
+        t.imageViewSilResim.setOnClickListener(view -> {
+            Snackbar.make(view,kisi.getKisi_ad() +" silinsin mi?",Snackbar.LENGTH_LONG)
+                    .setAction("Evet",view1 -> {
+                        Log.e("Kişi sil", String.valueOf(kisi.getKisi_id()));
+                    })
+                    .show();
+        });
     }
 
     @Override
