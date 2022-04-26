@@ -15,6 +15,7 @@ import com.example.kisilerapplication.R;
 import com.example.kisilerapplication.databinding.CardTasarimBinding;
 import com.example.kisilerapplication.entity.Kisiler;
 import com.example.kisilerapplication.fragment.AnasayfaFragmentDirections;
+import com.example.kisilerapplication.viewmodel.AnasayfaFragmentViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
@@ -22,10 +23,12 @@ import java.util.List;
 public class KisilerAdapter extends RecyclerView.Adapter<KisilerAdapter.CardTasarimTutucu> {
     private Context mContext;
     private List<Kisiler> kisilerListesi;
+    private AnasayfaFragmentViewModel viewModel;
 
-    public KisilerAdapter(Context mContext, List<Kisiler> kisilerListesi) {
+    public KisilerAdapter(Context mContext, List<Kisiler> kisilerListesi, AnasayfaFragmentViewModel viewModel) {
         this.mContext = mContext;
         this.kisilerListesi = kisilerListesi;
+        this.viewModel = viewModel;
     }
 
     public class CardTasarimTutucu extends RecyclerView.ViewHolder{
@@ -70,7 +73,7 @@ public class KisilerAdapter extends RecyclerView.Adapter<KisilerAdapter.CardTasa
         t.imageViewSilResim.setOnClickListener(view -> {
             Snackbar.make(view,kisi.getKisi_ad() +" silinsin mi?",Snackbar.LENGTH_LONG)
                     .setAction("Evet",view1 -> {
-                        Log.e("Kişi sil", String.valueOf(kisi.getKisi_id()));
+                        viewModel.sil(kisi.getKisi_id());
                     })
                     .show();
         });

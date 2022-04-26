@@ -12,8 +12,12 @@ public class KisilerDaoRepository {
         Log.e("Kişi Güncelle",kisi_id + kisi_ad + kisi_tel);
     }
 
-    public void kisiAra(String aramaKelimesi){
+    public void kisiAra(String aramaKelimesi) {
         Log.e("Kişi Ara",aramaKelimesi);
+    }
+
+    public void kisiSil(int kisi_id){
+        Log.e("Kişi sil",String.valueOf(kisi_id));
     }
 
 }

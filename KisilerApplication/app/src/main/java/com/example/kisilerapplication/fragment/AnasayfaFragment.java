@@ -61,7 +61,7 @@ public class AnasayfaFragment extends Fragment implements SearchView.OnQueryText
         kisilerList.add(k2);
         kisilerList.add(k3);
 
-        KisilerAdapter adapter = new KisilerAdapter(requireContext(),kisilerList);
+        KisilerAdapter adapter = new KisilerAdapter(requireContext(),kisilerList,viewModel);
         tasarim.setKisilerAdapter(adapter);
 
 

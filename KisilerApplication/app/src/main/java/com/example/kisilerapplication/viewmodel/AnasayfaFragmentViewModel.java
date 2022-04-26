@@ -12,4 +12,8 @@ public class AnasayfaFragmentViewModel extends ViewModel {
     public void ara(String aramaKelimesi){
         kisilerDaoRepository.kisiAra(aramaKelimesi);
     }
+
+    public void sil(int kisi_id){
+        kisilerDaoRepository.kisiSil(kisi_id);
+    }
 }
