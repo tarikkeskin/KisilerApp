@@ -1,10 +1,26 @@
 package com.example.kisilerapplication.entity;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
+@Entity(tableName = "kisiler")
 public class Kisiler implements Serializable {
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "kisi_id")
+    @NonNull
     private int kisi_id;
+
+    @ColumnInfo(name = "kisi_ad")
+    @NonNull
     private String kisi_ad;
+
+    @ColumnInfo(name = "kisi_tel")
+    @NonNull
     private String kisi_tel;
 
     public Kisiler() {
