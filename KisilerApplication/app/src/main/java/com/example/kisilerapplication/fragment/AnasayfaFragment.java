@@ -53,16 +53,11 @@ public class AnasayfaFragment extends Fragment implements SearchView.OnQueryText
         //Grid recycler view vertical&horizontal
         //tasarim.rv.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
 
-        ArrayList<Kisiler> kisilerList = new ArrayList<>();
-        Kisiler k1 = new Kisiler(1,"Veli","123456");
-        Kisiler k2 = new Kisiler(2,"elif","1663426");
-        Kisiler k3 = new Kisiler(3,"ahmet","1123126");
-        kisilerList.add(k1);
-        kisilerList.add(k2);
-        kisilerList.add(k3);
+        viewModel.kisilerListesi.observe(getViewLifecycleOwner(),liste -> {
+            KisilerAdapter adapter = new KisilerAdapter(requireContext(),liste,viewModel);
+            tasarim.setKisilerAdapter(adapter);
+        });
 
-        KisilerAdapter adapter = new KisilerAdapter(requireContext(),kisilerList,viewModel);
-        tasarim.setKisilerAdapter(adapter);
 
 
         return tasarim.getRoot();
