@@ -8,3 +8,4 @@ This project aims to improve following libraries and components:
 - Searchview
 - Navigation Component
 - Data Binding
+- -View Model Factory
