@@ -1,10 +1,13 @@
 # KisilerApp
 
-This project aims to improve following libraries and components:
+This project aims to improve the usage skills of the following libraries and components:
 
-- SQLite & Room & RxJava
-- Recyclerview
-- Adapters
-- Searchview
-- Navigation Component
+- MVVM architecture
 - Data Binding
+- Navigation Component
+- Adapters
+- Recyclerview
+- Searchview
+- Livedata & Dao
+- SQLite & Room & RxJava
+- View Model Factory
