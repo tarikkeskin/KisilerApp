@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.kisilerapplication.R;
 import com.example.kisilerapplication.databinding.FragmentKisiKayitBinding;
 import com.example.kisilerapplication.viewmodel.KisiKayitFragmentViewModel;
+import com.example.kisilerapplication.viewmodel.KisiKayitVMF;
 
 
 public class KisiKayitFragment extends Fragment {
@@ -38,7 +39,8 @@ public class KisiKayitFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(KisiKayitFragmentViewModel.class);
+        viewModel = new ViewModelProvider(this,
+                new KisiKayitVMF(requireActivity().getApplication())).get(KisiKayitFragmentViewModel.class);
     }
 
     public void buttonKaydetTikla(String kisi_ad, String kisi_tel){

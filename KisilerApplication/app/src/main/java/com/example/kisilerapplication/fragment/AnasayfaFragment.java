@@ -26,6 +26,7 @@ import com.example.kisilerapplication.adapter.KisilerAdapter;
 import com.example.kisilerapplication.databinding.FragmentAnasayfaBinding;
 import com.example.kisilerapplication.entity.Kisiler;
 import com.example.kisilerapplication.viewmodel.AnasayfaFragmentViewModel;
+import com.example.kisilerapplication.viewmodel.AnasayfaVMF;
 
 import java.util.ArrayList;
 
@@ -71,7 +72,8 @@ public class AnasayfaFragment extends Fragment implements SearchView.OnQueryText
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        viewModel = new ViewModelProvider(this).get(AnasayfaFragmentViewModel.class);
+        viewModel = new ViewModelProvider(this,
+                new AnasayfaVMF(requireActivity().getApplication())).get(AnasayfaFragmentViewModel.class);
     }
 
 

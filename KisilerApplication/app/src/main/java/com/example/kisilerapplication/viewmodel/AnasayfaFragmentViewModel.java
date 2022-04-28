@@ -1,7 +1,10 @@
 package com.example.kisilerapplication.viewmodel;
 
+import android.app.Application;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,11 +13,13 @@ import com.example.kisilerapplication.repo.KisilerDaoRepository;
 
 import java.util.List;
 
-public class AnasayfaFragmentViewModel extends ViewModel {
-    private KisilerDaoRepository kisilerDaoRepository = new KisilerDaoRepository();
+public class AnasayfaFragmentViewModel extends AndroidViewModel {
+    private KisilerDaoRepository kisilerDaoRepository;
     public MutableLiveData<List<Kisiler>> kisilerListesi = new MutableLiveData<>();
 
-    public AnasayfaFragmentViewModel() {
+    public AnasayfaFragmentViewModel(@NonNull Application application) {
+        super(application);
+        kisilerDaoRepository = new KisilerDaoRepository(application);
         kisilerYukle();
         kisilerListesi = kisilerDaoRepository.kisileriGetir();
     }

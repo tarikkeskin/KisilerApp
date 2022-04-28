@@ -1,20 +1,29 @@
 package com.example.kisilerapplication.repo;
 
+import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.kisilerapplication.entity.Kisiler;
+import com.example.kisilerapplication.room.Veritabani;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 public class KisilerDaoRepository {
 
     private MutableLiveData<List<Kisiler>> kisilerListesi;
+    private Veritabani vt;
 
-    public KisilerDaoRepository() {
+    public KisilerDaoRepository(Application application) {
         kisilerListesi = new MutableLiveData<>();
+        vt = Veritabani.veritabaniErisim(application);
     }
 
     public MutableLiveData<List<Kisiler>> kisileriGetir(){
@@ -38,17 +47,12 @@ public class KisilerDaoRepository {
     }
 
     public void tumKisileriAl(){
-        ArrayList<Kisiler> liste = new ArrayList<>();
-        Kisiler k1 = new Kisiler(1,"Veli","123456");
-        Kisiler k2 = new Kisiler(2,"elif","1663426");
-        Kisiler k3 = new Kisiler(3,"ahmet","1123126");
-        Kisiler k4 = new Kisiler(3,"ahmet","1123126");
-        liste.add(k1);
-        liste.add(k2);
-        liste.add(k3);
-        liste.add(k4);
-        kisilerListesi.setValue(liste);
-
+        Disposable disposable = vt.kisilerDao().tumKisiler()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(liste -> {
+                    kisilerListesi.setValue(liste);
+                });
     }
 
 }

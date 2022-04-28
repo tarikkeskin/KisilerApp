@@ -16,6 +16,7 @@ import com.example.kisilerapplication.R;
 import com.example.kisilerapplication.databinding.FragmentKisiDetayBinding;
 import com.example.kisilerapplication.entity.Kisiler;
 import com.example.kisilerapplication.viewmodel.KisiDetayFragmentViewModel;
+import com.example.kisilerapplication.viewmodel.KisiDetayVFM;
 
 
 public class KisiDetayFragment extends Fragment {
@@ -44,7 +45,8 @@ public class KisiDetayFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(KisiDetayFragmentViewModel.class);
+        viewModel = new ViewModelProvider(this,
+                new KisiDetayVFM(requireActivity().getApplication())).get(KisiDetayFragmentViewModel.class);
     }
 
     public void buttonGuncelle(int kisi_id, String kisi_adi, String kisi_tel){
