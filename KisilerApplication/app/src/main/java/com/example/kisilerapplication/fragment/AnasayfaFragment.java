@@ -117,5 +117,9 @@ public class AnasayfaFragment extends Fragment implements SearchView.OnQueryText
     }
     */
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        viewModel.kisilerYukle();
+    }
 }
