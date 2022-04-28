@@ -8,5 +8,6 @@ This project aims to improve the usage skills of the following libraries and com
 - Adapters
 - Recyclerview
 - Searchview
+- Livedata & Dao
 - SQLite & Room & RxJava
 - View Model Factory
