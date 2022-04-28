@@ -3,10 +3,10 @@
 This project aims to improve the usage skills of the following libraries and components:
 
 - MVVM architecture
-- SQLite & Room & RxJava
-- Recyclerview
-- Adapters
-- Searchview
-- Navigation Component
 - Data Binding
+- Navigation Component
+- Adapters
+- Recyclerview
+- Searchview
+- SQLite & Room & RxJava
 - View Model Factory
