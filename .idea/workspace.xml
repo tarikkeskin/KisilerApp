@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c64fe527-901a-456a-8d04-559872e28eea" name="Default Changelist" comment="" />
+    <list default="true" id="c64fe527-901a-456a-8d04-559872e28eea" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/KisilerApplication/app/src/main/assets/rehber.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/KisilerApplication/app/src/main/assets/rehber.sqlite" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
